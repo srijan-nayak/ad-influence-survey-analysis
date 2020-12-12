@@ -1,9 +1,10 @@
 ---
 title: "Ad influence survey analysis"
 author: "Srijan Nayak"
-date: "25/11/2020"
+date: "12/12/2020"
 output: pdf_document
 urlcolor: blue
+papersize: a4
 ---
 
 ```{r setup, include=FALSE}
