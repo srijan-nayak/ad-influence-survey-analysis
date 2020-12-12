@@ -25,3 +25,12 @@ library(dplyr) # for wrangling data
 library(ggplot2) # for making plots
 library(readr) # for reading data
 ```
+
+# Reading the data
+
+```{r}
+ad_influence_data <- read_csv("ad-influence.csv")
+n <- dim(ad_influence_data)[1]
+```
+
+At the time of writing `r n` responses have been collected.
