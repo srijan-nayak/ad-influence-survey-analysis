@@ -8,3 +8,9 @@ output: pdf_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 ```
+
+# Objective
+
+The objective of this survey was to understand the influence ads have on
+people's purchase decisions and on what aspect of ads do people focus on the
+most.
