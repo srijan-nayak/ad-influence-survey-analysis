@@ -30,7 +30,8 @@ library(readr) # for reading data
 # Reading the data
 
 ```{r}
-ad_influence_data <- read_csv("ad-influence.csv")
+ad_influence_data <- read_csv("ad-influence.csv") %>%
+  select(!Timestamp) # ignore timestamp column
 n <- dim(ad_influence_data)[1]
 ```
 
