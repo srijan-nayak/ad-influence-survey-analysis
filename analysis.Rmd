@@ -62,3 +62,28 @@ ad_influence_data[questions[1]] <- sapply(pull(ad_influence_data[questions[1]]),
 ad_influence_data[questions[2]] <- sapply(pull(ad_influence_data[questions[2]]),
                                           simplifyResponses, USE.NAMES = FALSE)
 ```
+
+# Platform with the most ads
+
+The first questions asked in the survey was as follows: \
+**_`r questions[1]`_**
+
+Let's look at the top 5 responses for this question.
+
+```{r fig.height=3}
+ad_influence_data %>%
+  rename(most_ads_platform = questions[1]) %>%
+  group_by(most_ads_platform) %>%
+  summarise(proportion = n() / n) %>%
+  arrange(desc(proportion)) %>%
+  head(5) %>%
+  ggplot(aes(x = reorder(most_ads_platform, proportion), y = proportion)) +
+  geom_col(width = 0.7) +
+  labs(x = NULL, title = "Platforms with highest ad encounter rates") +
+  coord_flip() +
+  theme_classic()
+```
+
+It can be observed that nowadays people encounter ads the most on video
+streaming sites and social media sites rather than traditional platforms like
+television and radio channels.
