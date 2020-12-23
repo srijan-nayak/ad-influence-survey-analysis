@@ -75,6 +75,7 @@ ad_influence_data %>%
   rename(most_ads_platform = questions[1]) %>%
   group_by(most_ads_platform) %>%
   summarise(proportion = n() / n) %>%
+  ungroup() %>%
   arrange(desc(proportion)) %>%
   head(5) %>%
   ggplot(aes(x = reorder(most_ads_platform, proportion), y = proportion)) +
@@ -86,7 +87,8 @@ ad_influence_data %>%
 
 It can be observed that nowadays people encounter ads the most on video
 streaming sites and social media sites rather than traditional platforms like
-television and radio channels.
+television and radio channels. This suggests that people might be gradually
+moving away from traditional media like televisions and FM radio.
 
 # Platforms that draw the most attention towards ads
 
