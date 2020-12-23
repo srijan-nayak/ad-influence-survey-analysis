@@ -33,6 +33,32 @@ library(readr) # for reading data
 ad_influence_data <- read_csv("ad-influence.csv") %>%
   select(!Timestamp) # ignore timestamp column
 n <- dim(ad_influence_data)[1]
+questions <- names(ad_influence_data)
 ```
 
 At the time of writing `r n` responses have been collected.
+
+# Simplifying responses
+
+Some options for the first 2 questions were made a little bit more descriptive
+to make it easier for the user to select the option they felt appropriate. But
+these long responses are not crucial for the analysis, therefore these are
+simplified into shorter responses.
+
+```{r}
+simplifyResponses <- function(response) {
+  if (response == "Social media sites (like Facebook, Instagram)") {
+    response = "Social media sites"
+  } else if (response == "Video streaming sites (like YouTube, Vimeo)") {
+    response = "Video streaming sites"
+  } else if (response == "General web (like Google Ads on various sites)") {
+    response = "General web"
+  }
+  return(response)
+}
+
+ad_influence_data[questions[1]] <- sapply(pull(ad_influence_data[questions[1]]),
+                                          simplifyResponses, USE.NAMES = FALSE)
+ad_influence_data[questions[2]] <- sapply(pull(ad_influence_data[questions[2]]),
+                                          simplifyResponses, USE.NAMES = FALSE)
+```
