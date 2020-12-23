@@ -46,7 +46,7 @@ these long responses are not crucial for the analysis, therefore these are
 simplified into shorter responses.
 
 ```{r}
-simplifyResponses <- function(response) {
+simplify_responses <- function(response) {
   if (response == "Social media sites (like Facebook, Instagram)") {
     response = "Social media sites"
   } else if (response == "Video streaming sites (like YouTube, Vimeo)") {
@@ -54,13 +54,13 @@ simplifyResponses <- function(response) {
   } else if (response == "General web (like Google Ads on various sites)") {
     response = "General web"
   }
-  return(response)
+  response
 }
 
 ad_influence_data[questions[1]] <- sapply(pull(ad_influence_data[questions[1]]),
-                                          simplifyResponses, USE.NAMES = FALSE)
+                                          simplify_responses, USE.NAMES = FALSE)
 ad_influence_data[questions[2]] <- sapply(pull(ad_influence_data[questions[2]]),
-                                          simplifyResponses, USE.NAMES = FALSE)
+                                          simplify_responses, USE.NAMES = FALSE)
 ```
 
 # Platform with the most ads
