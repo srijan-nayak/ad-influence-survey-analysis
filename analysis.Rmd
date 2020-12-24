@@ -124,3 +124,33 @@ previous question responses, the difference in the proportions of the
 top 3 responses is much smaller. Thus video streaming sites, social media sites,
 as well as television channels are good for advertising as the users are more
 likely to pay attention to the ads showed on these platforms.
+
+# What matters the most?
+
+The third question in the survey was as follows: \
+**_`r questions[3]`_**
+
+The purpose of this question was to see if ads are even necessary any more,
+and if they are, then what aspect is of the ad matters the most.
+
+Let's look at the responses for this question.
+
+```{r fig.height=3}
+ad_influence_data %>%
+  rename(important_aspect = questions[3]) %>%
+  group_by(important_aspect) %>%
+  summarise(proportion = n() / n) %>%
+  ungroup() %>%
+  arrange(desc(proportion)) %>%
+  ggplot(aes(x = reorder(important_aspect, proportion),
+             y = proportion)) +
+  geom_col(width = 0.7) +
+  labs(x = NULL, y = "Proportion",
+       title = "Most important factor in making a purchase decision") +
+  coord_flip() +
+  theme_classic()
+```
+
+Looking at the plot, it appears that people prioritize recommendations and their
+own research over ads. Brand ambassadors seem to be least popular factor for
+a user making a purchase decision.
