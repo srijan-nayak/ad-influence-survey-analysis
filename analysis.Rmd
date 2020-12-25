@@ -67,6 +67,32 @@ for (i in 1:length(ad_influence_data))  {
 }
 ```
 
+# Create plotting function
+
+```{r}
+plot_responses <- function(question, top = NULL, plot_title = NULL) {
+  responses_proportion <- ad_influence_data %>%
+    rename(variable = question) %>%
+    group_by(variable) %>%
+    summarise(proportion = n() / n) %>%
+    arrange(desc(proportion))
+
+  if (!is.null(top)) {
+    responses_proportion <- head(responses_proportion, top)
+  }
+  
+  responses_proportion %>%
+    ggplot(aes(x = reorder(variable, proportion),
+               y = proportion)) +
+    geom_col(width = 0.7) +
+    labs(x = NULL, y = "Proportion",
+         title = plot_title) +
+    coord_flip() +
+    theme_classic()
+}
+```
+
+
 # Platforms with the most ads
 
 The first questions asked in the survey was as follows: \
@@ -75,18 +101,8 @@ The first questions asked in the survey was as follows: \
 Let's look at the top 5 responses for this question.
 
 ```{r fig.height=3}
-ad_influence_data %>%
-  rename(most_ads_platform = questions[1]) %>%
-  group_by(most_ads_platform) %>%
-  summarise(proportion = n() / n) %>%
-  ungroup() %>%
-  arrange(desc(proportion)) %>%
-  head(5) %>%
-  ggplot(aes(x = reorder(most_ads_platform, proportion), y = proportion)) +
-  geom_col(width = 0.7) +
-  labs(x = NULL, title = "Platforms with highest ad encounter rates") +
-  coord_flip() +
-  theme_classic()
+plot_responses(questions[1], top = 5,
+               plot_title = "Platforms with highest ad encounter rates")
 ```
 
 It can be observed that nowadays people encounter ads the most on video
@@ -103,20 +119,8 @@ The purpose of this question was to see which platform makes the user focus
 on ads the longest. Let's look at the top 5 responses for this question.
 
 ```{r fig.height=3}
-ad_influence_data %>%
-  rename(attention_grabbing_platform = questions[2]) %>%
-  group_by(attention_grabbing_platform) %>%
-  summarise(proportion = n() / n) %>%
-  ungroup() %>%
-  arrange(desc(proportion)) %>%
-  head(5) %>%
-  ggplot(aes(x = reorder(attention_grabbing_platform, proportion),
-             y = proportion)) +
-  geom_col(width = 0.7) +
-  labs(x = NULL, y = "Proportion",
-       title = "Platforms where users pay attention to ads the most") +
-  coord_flip() +
-  theme_classic()
+plot_responses(questions[2], top = 5,
+               plot_title = "Platforms where users pay attention to ads the most")
 ```
 
 While the ranking of the categories is the same as what was observed in the
@@ -137,19 +141,7 @@ and if they are, then what aspect is of the ad matters the most.
 Let's look at the responses for this question.
 
 ```{r fig.height=3}
-ad_influence_data %>%
-  rename(important_aspect = questions[3]) %>%
-  group_by(important_aspect) %>%
-  summarise(proportion = n() / n) %>%
-  ungroup() %>%
-  arrange(desc(proportion)) %>%
-  ggplot(aes(x = reorder(important_aspect, proportion),
-             y = proportion)) +
-  geom_col(width = 0.7) +
-  labs(x = NULL, y = "Proportion",
-       title = "Most important factor in making a purchase decision") +
-  coord_flip() +
-  theme_classic()
+plot_responses(questions[3], plot_title = "Most important factor in making a purchase decision")
 ```
 
 Looking at the plot, it appears that people prioritize recommendations and their
@@ -164,19 +156,7 @@ The third question in the survey was as follows: \
 Let's look at how the responses for this question turned out.
 
 ```{r fig.height=2}
-ad_influence_data %>%
-  rename(discover_source = questions[4]) %>%
-  group_by(discover_source) %>%
-  summarise(proportion = n() / n) %>%
-  ungroup() %>%
-  arrange(desc(proportion)) %>%
-  ggplot(aes(x = reorder(discover_source, proportion),
-             y = proportion)) +
-  geom_col(width = 0.7) +
-  labs(x = NULL, y = "Proportion",
-       title = "How are new porducts/services discovered?") +
-  coord_flip() +
-  theme_classic()
+plot_responses(questions[4], plot_title = "How are new porducts/services discovered?")
 ```
 
 It appears that people mostly discover products/services they are interested in
@@ -192,7 +172,6 @@ ad_influence_data %>%
   rename(ads_unnecessary = questions[5]) %>%
   group_by(ads_unnecessary) %>%
   summarise(proportion = n() / n) %>%
-  ungroup() %>%
   arrange(desc(proportion)) %>%
   ggplot(aes(x =ads_unnecessary, y = proportion)) +
   geom_col(width = 0.5) +
