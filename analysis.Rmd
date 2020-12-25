@@ -180,3 +180,37 @@ ad_influence_data %>%
 
 It appears that people mostly discover products/services they are interested in
 through recommendations or searching and browsing on their own instead of ads.
+
+# Conclusion
+
+The last question in the survey was as follows: \
+**_`r questions[5]`_**
+
+```{r fig.height=3}
+ad_influence_data %>%
+  rename(ads_unnecessary = questions[5]) %>%
+  group_by(ads_unnecessary) %>%
+  summarise(proportion = n() / n) %>%
+  ungroup() %>%
+  arrange(desc(proportion)) %>%
+  ggplot(aes(x =ads_unnecessary, y = proportion)) +
+  geom_col(width = 0.7) +
+  labs(x = NULL, y = "Proportion",
+       title = "Can good products/services be discovered through ads?") +
+  theme_classic()
+```
+
+About 60% of the respondents believe they would have been able to find the good
+quality products that made them stick to a particular brand without ads.
+
+There are various other factors that might have affected the responses for this
+survey, but overall it appears that there is no need to spend a lot on
+advertising the product/service. If the product/service is good people will be
+able to find it on their own. That's not to say that ads shouldn't be there at
+all. Some small initial exposure is needed and this can be achieved through
+advertising on social media sites as people spend majority of their time on such
+platforms.
+
+The main conclusion draw from this analysis would be that, companies should
+focus on quality of their products/services, instead of going all out on
+advertising.
