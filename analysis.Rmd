@@ -48,13 +48,13 @@ to shorter responses.
 
 ```{r}
 simplify_responses <- function(response) {
-  if (response == "Social media sites (like Facebook, Instagram)") {
+  if (grepl("Social media sites", response)) {
     response = "Social media sites"
-  } else if (response == "Video streaming sites (like YouTube, Vimeo)") {
+  } else if (grepl("Video streaming sites", response)) {
     response = "Video streaming sites"
-  } else if (response == "General web (like Google Ads on various sites)") {
+  } else if (grepl("General web", response)) {
     response = "General web"
-  } else if (grepl("Recommendations? from friends or family", response)) {
+  } else if (grepl("Recommendation", response)) {
     response = "Recommendations"
   }
   response
