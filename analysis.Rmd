@@ -67,7 +67,7 @@ for (i in 1:length(ad_influence_data))  {
 }
 ```
 
-# Platform with the most ads
+# Platforms with the most ads
 
 The first questions asked in the survey was as follows: \
 **_`r questions[1]`_**
@@ -92,7 +92,7 @@ ad_influence_data %>%
 It can be observed that nowadays people encounter ads the most on video
 streaming sites and social media sites rather than traditional platforms like
 television and radio channels. This suggests that people might be gradually
-moving away from traditional media like televisions and FM radio.
+moving away from traditional media like television and FM radio.
 
 # Platforms that draw the most attention towards ads
 
@@ -122,8 +122,9 @@ ad_influence_data %>%
 While the ranking of the categories is the same as what was observed in the
 previous question responses, the difference in the proportions of the 
 top 3 responses is much smaller. Thus video streaming sites, social media sites,
-as well as television channels are good for advertising as the users are more
-likely to pay attention to the ads showed on these platforms.
+as well as television channels are good for advertising if the focus is to make
+the user pay attention to the ads as the users are more likely to pay attention
+to the ads showed on these platforms.
 
 # What matters the most?
 
@@ -194,7 +195,7 @@ ad_influence_data %>%
   ungroup() %>%
   arrange(desc(proportion)) %>%
   ggplot(aes(x =ads_unnecessary, y = proportion)) +
-  geom_col(width = 0.7) +
+  geom_col(width = 0.5) +
   labs(x = NULL, y = "Proportion",
        title = "Can good products/services be discovered through ads?") +
   theme_classic()
@@ -211,6 +212,6 @@ all. Some small initial exposure is needed and this can be achieved through
 advertising on social media sites as people spend majority of their time on such
 platforms.
 
-The main conclusion draw from this analysis would be that, companies should
-focus on quality of their products/services, instead of going all out on
-advertising.
+The main conclusion that can be drawn from this analysis would be that,
+companies should focus on quality of their products/services instead of going
+all out on advertising.
