@@ -69,6 +69,10 @@ for (i in 1:length(ad_influence_data))  {
 
 # Creating plotting function
 
+The following function extracts responses for a given question, computes the
+proportion of each response and plots it as a ranked horizontal bar graph. If
+needed, top `n` responses can be selected for plotting only.
+
 ```{r}
 plot_responses <- function(question, top = NULL, plot_title = NULL) {
   responses_proportion <- ad_influence_data %>%
