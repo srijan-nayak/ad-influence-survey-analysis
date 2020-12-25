@@ -67,7 +67,7 @@ for (i in 1:length(ad_influence_data))  {
 }
 ```
 
-# Create plotting function
+# Creating plotting function
 
 ```{r}
 plot_responses <- function(question, top = NULL, plot_title = NULL) {
@@ -141,7 +141,7 @@ and if they are, then what aspect is of the ad matters the most.
 Let's look at the responses for this question.
 
 ```{r fig.height=3}
-plot_responses(questions[3], plot_title = "Most important factor in making a purchase decision")
+plot_responses(questions[3], plot_title = "Most important factors in making a purchase decision")
 ```
 
 Looking at the plot, it appears that people prioritize recommendations and their
