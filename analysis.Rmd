@@ -1,6 +1,6 @@
 ---
 title: "Ad influence survey analysis"
-author: "Srijan Nayak"
+author: "Srijan Nayak - 20191COM0194"
 date: "12/12/2020"
 output: pdf_document
 urlcolor: blue
