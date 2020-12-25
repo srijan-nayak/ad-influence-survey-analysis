@@ -154,3 +154,29 @@ ad_influence_data %>%
 Looking at the plot, it appears that people prioritize recommendations and their
 own research over ads. Brand ambassadors seem to be least popular factor for
 a user making a purchase decision.
+
+# How are new products discovered?
+
+The third question in the survey was as follows: \
+**_`r questions[4]`_**
+
+Let's look at how the responses for this question turned out.
+
+```{r fig.height=2}
+ad_influence_data %>%
+  rename(discover_source = questions[4]) %>%
+  group_by(discover_source) %>%
+  summarise(proportion = n() / n) %>%
+  ungroup() %>%
+  arrange(desc(proportion)) %>%
+  ggplot(aes(x = reorder(discover_source, proportion),
+             y = proportion)) +
+  geom_col(width = 0.7) +
+  labs(x = NULL, y = "Proportion",
+       title = "How are new porducts/services discovered?") +
+  coord_flip() +
+  theme_classic()
+```
+
+It appears that people mostly discover products/services they are interested in
+through recommendations or searching and browsing on their own instead of ads.
